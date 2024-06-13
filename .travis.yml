@@ -1,0 +1,19 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ddutjnrevenge-universe/react-test -f ./client/Dockerfile.dev ./client 
+  
+script:
+  - docker run -e CI=true ddutjnrevenge-universe/react-test npm test
+
+after_success:
+  - docker build -t ddutjnrevenge-universe/multi-client ./client
+  - docker build -t ddutjnrevenge-universe/multi-nginx ./nginx
+  - docker build -t ddutjnrevenge-universe/multi-server ./server
+  - docker build -t ddutjnrevenge-universe/multi-worker ./worker
+  # Log in to the docker CLI
+
+
