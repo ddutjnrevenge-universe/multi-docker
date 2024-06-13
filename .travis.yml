@@ -6,11 +6,6 @@ services:
 before_install:
   - docker build -t ddutjnrevenge-universe/react-test -f ./client/Dockerfile.dev ./client 
 
-# Ensure the service is available
-before_script:
-  - echo "Waiting for the service to be available..."
-  - sleep 10 # Wait for 15 seconds to give time for the service to be up and running
-  
 script:
   - docker run -e CI=true ddutjnrevenge-universe/react-test npm test
 
