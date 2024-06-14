@@ -10,10 +10,6 @@ before_install:
 script:
   - docker run -e CI=true ddutjnrevenge-universe/react-test npm test
 
-env:
-  global:
-    - DOCKER_ID=ddutjnrevenge93
-
 after_success:
   - docker build -t ddutjnrevenge-universe/multi-client ./client
   - docker build -t ddutjnrevenge-universe/multi-nginx ./nginx
