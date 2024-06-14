@@ -11,10 +11,15 @@ script:
   - docker run -e CI=true ddutjnrevenge-universe/react-test npm test
 
 after_success:
-  - docker build -t ddutjnrevenge-universe/multi-client ./client
-  - docker build -t ddutjnrevenge-universe/multi-nginx ./nginx
-  - docker build -t ddutjnrevenge-universe/multi-server ./server
-  - docker build -t ddutjnrevenge-universe/multi-worker ./worker
+  - docker build -t complex-client ./client
+  - docker build -t complex-nginx ./nginx
+  - docker build -t complex-server ./server
+  - docker build -t complex-worker ./worker
+  # Tag the images with the correct repository names
+  - docker tag complex-client ddutjnrevenge-universe/multi-client
+  - docker tag complex-nginx ddutjnrevenge-universe/multi-nginx
+  - docker tag complex-server ddutjnrevenge-universe/multi-server
+  - docker tag complex-worker ddutjnrevenge-universe/multi-worker
   # Log in to the docker CLI (docker login)
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
