@@ -5,10 +5,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t ddutjnrevenge-universe/react-test -f ./client/Dockerfile.dev ./client 
+  - docker build -t ddutjnrevenge93/react-test -f ./client/Dockerfile.dev ./client 
 
 script:
-  - docker run -e CI=true ddutjnrevenge-universe/react-test npm test
+  - docker run -e CI=true ddutjnrevenge93/react-test npm test
 
 after_success:
   - docker build -t complex-client ./client
@@ -16,15 +16,15 @@ after_success:
   - docker build -t complex-server ./server
   - docker build -t complex-worker ./worker
   # Tag the images with the correct repository names
-  - docker tag complex-client ddutjnrevenge-universe/multi-client
-  - docker tag complex-nginx ddutjnrevenge-universe/multi-nginx
-  - docker tag complex-server ddutjnrevenge-universe/multi-server
-  - docker tag complex-worker ddutjnrevenge-universe/multi-worker
+  - docker tag complex-client ddutjnrevenge93/multi-client
+  - docker tag complex-nginx ddutjnrevenge93/multi-nginx
+  - docker tag complex-server ddutjnrevenge93/multi-server
+  - docker tag complex-worker ddutjnrevenge93/multi-worker
   # Log in to the docker CLI (docker login)
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push ddutjnrevenge-universe/multi-client
-  - docker push ddutjnrevenge-universe/multi-nginx
-  - docker push ddutjnrevenge-universe/multi-server
-  - docker push ddutjnrevenge-universe/multi-worker
+  - docker push ddutjnrevenge93/multi-client
+  - docker push ddutjnrevenge93/multi-nginx
+  - docker push ddutjnrevenge93/multi-server
+  - docker push ddutjnrevenge93/multi-worker
 
