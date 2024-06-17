@@ -17,7 +17,7 @@ function App() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Hello let's find the Fibonacci number!
           </a>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
